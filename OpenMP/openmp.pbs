@@ -1,0 +1,13 @@
+#PBS -q cs6210
+#PBS -l nodes=1:sixcore
+#PBS -N sbarrier
+
+cd OpenMP
+
+for i in {2..8}
+do
+	echo "Starting $i"
+	./sense_reversing $i
+	./dissemination $i
+done
+

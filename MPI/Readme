@@ -1,0 +1,14 @@
+
+How to run the code normally-
+1. make
+2. run this command for the mpi barriers- mpirun -np (num of processes) ./executable
+3. run this command for the combined barrier- mpirun -np (num of processes) ./executable (num of threads)
+
+Here num of processes and num of threads are arguments.  
+
+How to run code on Cluster-
+1. make
+2. Run this command - qsub ./mpi.pbs 
+3. Script will run both MPI barriers
+4. Run this command - qsub ./combined.pbs
+5. Script will run the combined barrier

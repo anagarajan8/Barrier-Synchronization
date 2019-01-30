@@ -1,0 +1,28 @@
+#PBS -q cs6210
+#PBS -l nodes=12:sixcore
+#PBS -N running_again
+OMPI_MCA_mpi_yield_when_idle=0
+cd MPI
+
+echo "** Starting Tournament barrier **"
+for (( j=2; j<=12; j++))
+do
+	#mpirun --hostfile $PBS_NODEFILE -np $j ./dissemination 
+	echo "Starting for $j processes"
+	/usr/lib64/openmpi/bin/mpirun --hostfile $PBS_NODEFILE -np $j ./tournament
+	echo "Ended $j processes"
+done
+
+echo "** Ended Tournament barrier **"
+
+echo "** Starting Dissemination barrier **"
+for (( j=2; j<=12; j++))
+do
+	#mpirun --hostfile $PBS_NODEFILE -np $j ./dissemination 
+	echo "Starting for $j processes"
+	/usr/lib64/openmpi/bin/mpirun --hostfile $PBS_NODEFILE -np $j ./dissemination_MPI
+	echo "Ended $j processes"
+done
+
+
+echo "** Ended Dissemination  barrier **"

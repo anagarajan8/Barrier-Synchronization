@@ -1,0 +1,9 @@
+How to run the code normally-
+1. make
+2. run executables separately with argument as number of threads
+
+How to run code on Cluster-
+1. make
+2. Run this command - qsub ./openmp.pbs
+3. Script will run both OpenMP barriers
+4. A csv file with name sense_reversing.csv and dissemination.csv will be generated with the respective outputs

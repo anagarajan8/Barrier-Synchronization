@@ -1,0 +1,19 @@
+
+#PBS -q cs6210
+#PBS -l nodes=12:sixcore
+#PBS -N mpi
+OMPI_MCA_mpi_yield_when_idle=0
+cd MPI
+echo "** Starting Combined barrier **"
+for (( j=8; j<=8; j=j+3))
+do
+	for (( i=2; i<=12; i=i+3))
+	do
+        #mpirun --hostfile $PBS_NODEFILE -np $j ./dissemination 
+        echo "Starting for $j processes $i threads"
+        /usr/lib64/openmpi/bin/mpirun --hostfile $PBS_NODEFILE -np $j ./combined $i
+        echo "Ended $j processes $i threads"
+	done
+done
+
+echo "** Ended Combined barrier **"
